@@ -49,6 +49,7 @@ gm is one long-horizon worker: an MCP server that runs a task as one append-only
 - An installed build from 409087f-77 or earlier cannot self-update: its updater looks for gm-<target> in the unpacked archive, while the archives ship gmnew-<target>. One manual scripts/install.sh run is needed; 70e4349 fixes the updater. DESIGN.md, "Update witness against the published release (2026-11-05)".
 - Concurrent gm.search and gm.grep calls once shared unguarded SearchVerbs and Searcher state, which crashed the worker (exit 139). 5d9e835 serializes SearchVerbs::call, keeps cached index pointers valid, and masks .env values in hit lines. DESIGN.md, "Search verbs under parallel bodies (2026-11-05)".
 - gh run list --commit needs the full 40-character SHA; a 7-character prefix returns no runs. DESIGN.md, "Setup and troubleshooting facts (2026-11-05)".
+- Embedded Python codemode needs a host libpython3.11.so.1.0 (21,794,296 bytes) plus a 34,410,240-byte stdlib in 1,916 files, against quickjs-ng's 21 files and 2.8M. DESIGN.md, "Embedded Python codemode measured, owner direction held (2026-11-05)".
 
 ## Parity harness
 
